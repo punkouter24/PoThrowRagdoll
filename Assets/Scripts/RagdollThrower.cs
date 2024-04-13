@@ -1,24 +1,31 @@
 using UnityEngine;
 using System.Collections; // Needed for IEnumerator
+using UnityEngine.UI; // Required for accessing the Slider component
 
 public class RagdollThrower : MonoBehaviour
 {
     public Rigidbody ragdollRoot; // Assign the root Rigidbody of the ragdoll in the Inspector
     public float throwForce = 500f;
+    public float throwAngle = 45f; // Default angle in degrees
+    public Slider angleSlider; // Assign this in the Inspector
     public LevelController levelController; // Make sure to assign this in the Inspector
+    public LineRenderer angleLineRenderer; // Assign this in the Inspector
+    public GameObject ThrowSquare; // Add this line to declare ThrowSquare
     private Vector3 initialPosition;
     private Quaternion initialRotation;
     private bool hasThrown = false;
     private int score = 0; // Tracks the score
 
-    //void Start()
-    //{
-    //    // Store the initial position and rotation
-    //    initialPosition = ragdollRoot.transform.position;
-    //    initialRotation = ragdollRoot.transform.rotation;
+    void Start()
+    {
+        angleLineRenderer.startWidth = 0.05f; // Set start width to 0.05
+        angleLineRenderer.endWidth = 0.05f;   // Set end width to 0.05
+        // Store the initial position and rotation
+        initialPosition = ragdollRoot.transform.position;
+        initialRotation = ragdollRoot.transform.rotation;
 
-    //    SetRagdollState(true); // Disable physics initially to keep the ragdoll in T-pose
-    //}
+        SetRagdollState(true); // Disable physics initially to keep the ragdoll in T-pose
+    }
 
     public void SetRagdollState(bool isKinematic)
     {
@@ -36,7 +43,13 @@ public class RagdollThrower : MonoBehaviour
         {
             gameObject.SetActive(true); // Ensure the game object is active
             SetRagdollState(false); // Enable ragdoll physics before throwing
-            Vector3 throwDirection = new Vector3(0, 0, 1); // Example direction
+            float angleRad = throwAngle * Mathf.Deg2Rad; // Convert angle to radians
+                                                         // Retrieve the x position of the ThrowSquare and calculate direction offset
+            float xDirection = ThrowSquare.transform.position.x;
+            xDirection = (xDirection - 0) / (1200 - 0) * (1 - (-1)) + (-1);
+            Debug.Log(xDirection);
+
+            Vector3 throwDirection = new Vector3(xDirection, Mathf.Cos(angleRad), Mathf.Sin(angleRad)); // Adjust direction based on angle and x position
             ThrowRagdoll(throwDirection);
             StartCoroutine(LevelEndCountdown(10f)); // Start the 5-second countdown after throwing
             hasThrown = true;
@@ -81,6 +94,22 @@ public class RagdollThrower : MonoBehaviour
     {
         throwForce = value;
         Debug.Log($"Throw force updated to: {throwForce}");
+    }
+
+    public void UpdateThrowAngle(float value)
+    {
+        throwAngle = value;
+        UpdateAngleLineRenderer();
+        Debug.Log($"Throw angle updated to: {throwAngle} degrees");
+    }
+
+    private void UpdateAngleLineRenderer()
+    {
+        Vector3 start = ragdollRoot.position;
+        float angleRad = throwAngle * Mathf.Deg2Rad;
+        Vector3 end = start + new Vector3(0, Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * 3; // Reduced length to 3 units
+        angleLineRenderer.SetPosition(0, start);
+        angleLineRenderer.SetPosition(1, end);
     }
 
 }

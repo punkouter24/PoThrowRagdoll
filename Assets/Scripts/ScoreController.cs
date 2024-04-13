@@ -8,12 +8,19 @@ public class ScoreController : MonoBehaviour
     public Text scoreText;
     private int score = 0;
 
+    // Method to get the current score
+    public int GetScore()
+    {
+        return score;
+    }
+
     void Awake()
     {
         // Ensure there's only one instance of ScoreManager
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject); // Make this object persistent
             score = 0; // Explicitly set score to 0
         }
         else

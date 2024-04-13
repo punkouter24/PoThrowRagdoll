@@ -1,10 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
     public AudioClip buttonClickSound; // The click sound effect
     public AudioSource audioSource;    // Reference to the AudioSource component
+    public Text scoreText;
+
+    void Start()
+    {
+        if (ScoreController.instance != null)
+        {
+            scoreText.text = "Score: " + ScoreController.instance.GetScore();
+        }
+    }
 
     // Function to be called when the "Start" button is pressed
     public void StartGame()
