@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections; // Added for coroutine support
 
 public class PyramidLevel : Level
 {
@@ -60,6 +61,15 @@ public class PyramidLevel : Level
         }
     }
 
+    private IEnumerator InitializeLevelWithDelay()
+    {
+        // Generate the level structure
+        CreateLevel();
+        yield return new WaitForSeconds(1); // Wait for 1 second
+        // Here you can add code to activate the scoring system
+        Debug.Log("Scoring Activated");
+    }
+
     public override void DestroyLevel()
     {
         Debug.Log("Destroying Pyramid Level");
@@ -71,3 +81,4 @@ public class PyramidLevel : Level
         }
     }
 }
+

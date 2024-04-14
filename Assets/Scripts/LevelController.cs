@@ -89,6 +89,9 @@ public class LevelController : MonoBehaviour
     {
         // Handle the end of the game
         Debug.Log("Game Over! Returning to the main menu.");
+        int finalScore = FindObjectOfType<ScoreController>().GetScore();
+        PlayerPrefs.SetInt("FinalScore", finalScore);
+        PlayerPrefs.Save();
         SceneManager.LoadScene("Main");
     }
 }

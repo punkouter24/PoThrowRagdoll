@@ -7,16 +7,16 @@ public class MenuController : MonoBehaviour
     public AudioClip buttonClickSound; // The click sound effect
     public AudioSource audioSource;    // Reference to the AudioSource component
     public Text scoreText;
-
-    void Start()
+  
+    public void Start()
     {
-        if (ScoreController.instance != null)
+        if (PlayerPrefs.HasKey("FinalScore"))
         {
-            scoreText.text = "Score: " + ScoreController.instance.GetScore();
+            int finalScore = PlayerPrefs.GetInt("FinalScore");
+            scoreText.text = "Final Score: " + finalScore;
         }
     }
 
-    // Function to be called when the "Start" button is pressed
     public void StartGame()
     {
         PlaySound();
