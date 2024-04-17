@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections; // Needed for IEnumerator
+using UnityEngine;
 using UnityEngine.UI; // Required for accessing the Slider component
 
 public class RagdollThrower : MonoBehaviour
@@ -14,9 +14,8 @@ public class RagdollThrower : MonoBehaviour
     private Vector3 initialPosition;
     private Quaternion initialRotation;
     private bool hasThrown = false;
-    private int score = 0; // Tracks the score
 
-    void Start()
+    private void Start()
     {
         angleLineRenderer.startWidth = 0.05f; // Set start width to 0.05
         angleLineRenderer.endWidth = 0.05f;   // Set end width to 0.05
@@ -46,12 +45,13 @@ public class RagdollThrower : MonoBehaviour
             float angleRad = throwAngle * Mathf.Deg2Rad; // Convert angle to radians
                                                          // Retrieve the x position of the ThrowSquare and calculate direction offset
             float xDirection = ThrowSquare.transform.position.x;
-            xDirection = (xDirection - 0) / (1200 - 0) * (1 - (-1)) + (-1);
             Debug.Log(xDirection);
+            xDirection = Mathf.Clamp(((xDirection - 0) / (500 - 0) * (1 - (-1))) + (-1), -0.3f, 0.3f);
+            Debug.Log($"Clamped xDirection: {xDirection}");
 
-            Vector3 throwDirection = new Vector3(xDirection, Mathf.Cos(angleRad), Mathf.Sin(angleRad)); // Adjust direction based on angle and x position
+            Vector3 throwDirection = new(xDirection, Mathf.Cos(angleRad), Mathf.Sin(angleRad)); // Adjust direction based on angle and x position
             ThrowRagdoll(throwDirection);
-            StartCoroutine(LevelEndCountdown(10f)); // Start the 5-second countdown after throwing
+            _ = StartCoroutine(LevelEndCountdown(10f)); // Start the 5-second countdown after throwing
             hasThrown = true;
         }
     }
@@ -80,7 +80,7 @@ public class RagdollThrower : MonoBehaviour
         SetRagdollState(true); // Return to kinematic state to freeze in place
 
         // Optionally, reset the state of child Rigidbody components if your ragdoll has them
-        foreach (var rb in ragdollRoot.GetComponentsInChildren<Rigidbody>())
+        foreach (Rigidbody rb in ragdollRoot.GetComponentsInChildren<Rigidbody>())
         {
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
@@ -107,7 +107,7 @@ public class RagdollThrower : MonoBehaviour
     {
         Vector3 start = ragdollRoot.position;
         float angleRad = throwAngle * Mathf.Deg2Rad;
-        Vector3 end = start + new Vector3(0, Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * 3; // Reduced length to 3 units
+        Vector3 end = start + (new Vector3(0, Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * 3); // Reduced length to 3 units
         angleLineRenderer.SetPosition(0, start);
         angleLineRenderer.SetPosition(1, end);
     }
