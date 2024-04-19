@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,13 @@ public class Block : MonoBehaviour
     {
         startPosition = transform.position;
         scoreController = FindObjectOfType<ScoreController>(); // Find the ScoreController in the scene
+        StartCoroutine(EnableScoringAfterDelay(2.0f)); // Wait for 2 seconds before enabling scoring
+    }
+
+    IEnumerator EnableScoringAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        hasScored = false; // Enable scoring after the delay
     }
 
     void Update()

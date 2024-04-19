@@ -46,7 +46,7 @@ public class RagdollThrower : MonoBehaviour
                                                          // Retrieve the x position of the ThrowSquare and calculate direction offset
             float xDirection = ThrowSquare.transform.position.x;
             Debug.Log(xDirection);
-            xDirection = Mathf.Clamp(((xDirection - 0) / (500 - 0) * (1 - (-1))) + (-1), -0.3f, 0.3f);
+            xDirection = Mathf.Clamp(((xDirection - 0) / (500 - 0) * (1 - (-1))) + (-1), -0.1f, 0.1f);
             Debug.Log($"Clamped xDirection: {xDirection}");
 
             Vector3 throwDirection = new(xDirection, Mathf.Cos(angleRad), Mathf.Sin(angleRad)); // Adjust direction based on angle and x position
