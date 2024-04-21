@@ -13,7 +13,7 @@ public class Block : MonoBehaviour
     {
         startPosition = transform.position;
         scoreController = FindObjectOfType<ScoreController>(); // Find the ScoreController in the scene
-        StartCoroutine(EnableScoringAfterDelay(2.0f)); // Wait for 2 seconds before enabling scoring
+        StartCoroutine(EnableScoringAfterDelay(3.0f)); // Wait for 2 seconds before enabling scoring
     }
 
     IEnumerator EnableScoringAfterDelay(float delay)

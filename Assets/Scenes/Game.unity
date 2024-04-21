@@ -2013,8 +2013,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockPrefab: {fileID: 3074609593578228554, guid: 6ac8fc307ae040345bb03a60d5c92129, type: 3}
-  pyramidBaseSize: 9
-  blockSpacing: 1.1
+  pyramidBaseSize: 6
+  blockSpacing: 1.2
 --- !u!4 &1328324562
 Transform:
   m_ObjectHideFlags: 0
@@ -2191,11 +2191,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!4 &1469988623 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1109431491763664043, guid: aaf95eff19c888e4aa4748161b297264, type: 3}
-  m_PrefabInstance: {fileID: 11310366}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1617591782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2743,9 +2738,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b823dd75dcdf6074186b1965cb061a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThrowSquare: {fileID: 2038387665}
-  ragdollRoot: {fileID: 1469988623}
-  xDirection: 0
 --- !u!1 &2045022900
 GameObject:
   m_ObjectHideFlags: 0
