@@ -9,7 +9,6 @@ public class RagdollThrower : MonoBehaviour
     public float throwAngle = 45f; // Default angle in degrees
     public Slider angleSlider; // Assign this in the Inspector
     public LevelController levelController; // Make sure to assign this in the Inspector
-    public LineRenderer angleLineRenderer; // Assign this in the Inspector
     public GameObject ThrowSquare; // Add this line to declare ThrowSquare
     private Vector3 initialPosition;
     private Quaternion initialRotation;
@@ -17,11 +16,11 @@ public class RagdollThrower : MonoBehaviour
 
     private void Start()
     {
-        angleLineRenderer.startWidth = 0.05f; // Set start width to 0.05
-        angleLineRenderer.endWidth = 0.05f;   // Set end width to 0.05
         // Store the initial position and rotation
-        initialPosition = ragdollRoot.transform.position;
-        initialRotation = ragdollRoot.transform.rotation;
+        //initialPosition = ragdollStart.transform.position; // Change from ragdollRoot to ragdollStart
+        //initialRotation = ragdollStart.transform.rotation; // Change from ragdollRoot to ragdollStart
+
+
 
         SetRagdollState(true); // Disable physics initially to keep the ragdoll in T-pose
     }
@@ -108,8 +107,6 @@ public class RagdollThrower : MonoBehaviour
         Vector3 start = ragdollRoot.position;
         float angleRad = throwAngle * Mathf.Deg2Rad;
         Vector3 end = start + (new Vector3(0, Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * 3); // Reduced length to 3 units
-        angleLineRenderer.SetPosition(0, start);
-        angleLineRenderer.SetPosition(1, end);
     }
 
 }

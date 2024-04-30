@@ -6,6 +6,7 @@ public class LevelDisplayController : MonoBehaviour
     public Text levelText;
     private LevelController levelController;
 
+    [System.Obsolete]
     void Start()
     {
         levelController = FindObjectOfType<LevelController>();
