@@ -299,10 +299,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 368572336}
   m_HandleRect: {fileID: 786596084}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 90
+  m_MinValue: 30
+  m_MaxValue: 60
   m_WholeNumbers: 0
-  m_Value: 45
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -354,13 +354,17 @@ PrefabInstance:
       propertyPath: angleLineRenderer
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5018407238580398690, guid: aaf95eff19c888e4aa4748161b297264, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7086924759049418817, guid: aaf95eff19c888e4aa4748161b297264, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7086924759049418817, guid: aaf95eff19c888e4aa4748161b297264, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7086924759049418817, guid: aaf95eff19c888e4aa4748161b297264, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1263,7 +1267,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 2500
   m_WholeNumbers: 0
-  m_Value: 1750
+  m_Value: 2500
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

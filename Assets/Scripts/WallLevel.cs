@@ -7,7 +7,7 @@ public class WallLevel : Level
     public Material material2;
     private readonly int wallWidth = 10;
     private readonly int wallHeight = 10;
-    private readonly float blockSpacing = 1.1f;
+    private readonly float blockSpacing = 1.15f;
 
     public override void CreateLevel()
     {
@@ -44,18 +44,28 @@ public class WallLevel : Level
             }
         }
 
-        // Add additional walls
         // Add additional walls further away
-        float wallOffsetDistance = 20.0f; // Adjust this value as needed
-        AddWall(centerPoint + new Vector3(0, 0, wallOffsetDistance));
-        AddWall(centerPoint + new Vector3(0, 0, -wallOffsetDistance));
-        AddWall(centerPoint + new Vector3(wallOffsetDistance, 0, 0));
-        AddWall(centerPoint + new Vector3(-wallOffsetDistance, 0, 0));
+        float wallOffsetDistance = 3.0f; // Adjust this value as needed
+        AddWall(centerPoint + new Vector3(-5, 0, -7 * wallOffsetDistance), 4);
+        AddWall(centerPoint + new Vector3(-5, 0, -6 * wallOffsetDistance), 4);
+        AddWall(centerPoint + new Vector3(-5, 0, -5 * wallOffsetDistance), 4);
+
+        AddWall(centerPoint + new Vector3(-5, 0, 5 * wallOffsetDistance), 10);
+        AddWall(centerPoint + new Vector3(-5, 0, 6 * wallOffsetDistance), 10);
+        AddWall(centerPoint + new Vector3(-5, 0, 7 * wallOffsetDistance), 10);
+
+
+
+
+
+
+
+
     }
 
-    private void AddWall(Vector3 startPosition)
+    private void AddWall(Vector3 startPosition, int height)
     {
-        for (int y = 0; y < wallHeight; y++)
+        for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < wallWidth; x++)
             {

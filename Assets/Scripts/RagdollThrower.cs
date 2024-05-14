@@ -16,12 +16,6 @@ public class RagdollThrower : MonoBehaviour
 
     private void Start()
     {
-        // Store the initial position and rotation
-        //initialPosition = ragdollStart.transform.position; // Change from ragdollRoot to ragdollStart
-        //initialRotation = ragdollStart.transform.rotation; // Change from ragdollRoot to ragdollStart
-
-
-
         SetRagdollState(true); // Disable physics initially to keep the ragdoll in T-pose
     }
 
@@ -39,6 +33,7 @@ public class RagdollThrower : MonoBehaviour
     {
         if (!hasThrown) // Check to make sure we only throw once
         {
+            //ragdollRoot.transform.position += Vector3.up; // Raise the ragdoll by 1 unit
             gameObject.SetActive(true); // Ensure the game object is active
             SetRagdollState(false); // Enable ragdoll physics before throwing
             float angleRad = throwAngle * Mathf.Deg2Rad; // Convert angle to radians
@@ -98,15 +93,6 @@ public class RagdollThrower : MonoBehaviour
     public void UpdateThrowAngle(float value)
     {
         throwAngle = value;
-        UpdateAngleLineRenderer();
         Debug.Log($"Throw angle updated to: {throwAngle} degrees");
     }
-
-    private void UpdateAngleLineRenderer()
-    {
-        Vector3 start = ragdollRoot.position;
-        float angleRad = throwAngle * Mathf.Deg2Rad;
-        Vector3 end = start + (new Vector3(0, Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * 3); // Reduced length to 3 units
-    }
-
 }
